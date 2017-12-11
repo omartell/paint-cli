@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "paint/cli"
+require "paint_cli/cli"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
