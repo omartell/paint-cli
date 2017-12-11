@@ -9,7 +9,7 @@ RSpec.describe PaintCli::Runner do
     expect { runner.start }.to output(%r{Welcome to paint-cli}).to_stdout
   end
 
-  it "is able to handle canvas commands" do
+  it "paints a canvas" do
     allow($stdin).to receive(:gets).and_return("C 3 3", "Q")
 
     expect { runner.start }.to output(%r{
@@ -19,5 +19,11 @@ RSpec.describe PaintCli::Runner do
 |   |
 |---|
 }x).to_stdout
+  end
+
+  it "shows an error message for invalid inputs" do
+    allow($stdin).to receive(:gets).and_return("C a f", "Q")
+
+    expect { runner.start }.to output(%r{Invalid input, please try again}).to_stdout
   end
 end

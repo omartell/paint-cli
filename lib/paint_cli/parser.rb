@@ -1,16 +1,18 @@
+require 'ostruct'
+
 module PaintCli
-  class Quit
+  class Quit < OpenStruct
     def run
     end
   end
 
-  class Canvas
-    attr_reader :width, :height
-    def initialize(width, height)
-      @width  = width
-      @height = height
+  class InvalidInput < OpenStruct
+    def run
+      $stdout.puts "Invalid input, please try again"
     end
+  end
 
+  class Canvas < OpenStruct
     def run
       puts "|"  + "-" * width + "|"
       height.times do
@@ -24,13 +26,18 @@ module PaintCli
     def parse(input)
       command, *args = input.split(/\s/)
 
-      if command == "Q"
+      case command
+      when "Q"
         Quit.new
-      elsif command == "C"
+      when "C"
         width  = Integer(args.first)
         height = Integer(args.last)
-        Canvas.new(width, height)
+        Canvas.new(width: width, height: height)
+      else
+        InvalidInput.new(input: input)
       end
+    rescue ArgumentError
+      InvalidInput.new(input: input)
     end
   end
 end
