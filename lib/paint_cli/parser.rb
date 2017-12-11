@@ -1,29 +1,13 @@
 require 'ostruct'
 
 module PaintCli
-  class Quit < OpenStruct
-    def run
-    end
+  class Quit
   end
 
-  class InvalidInput < OpenStruct
-    def run
-      $stdout.puts "Invalid input, please try again"
-    end
-  end
-
-  class Canvas < OpenStruct
-    def run
-      puts "|"  + "-" * width + "|"
-      height.times do
-        puts "|"  + " " * width + "|"
-      end
-      puts "|"  + "-" * width + "|"
-    end
-  end
-
-  class Line < OpenStruct
-    def run
+  class InvalidInput
+    attr_reader :input
+    def initialize(input)
+      @input = input
     end
   end
 
@@ -35,15 +19,9 @@ module PaintCli
       when "Q"
         Quit.new
       when "C"
-        width  = Integer(args.first)
-        height = Integer(args.last)
-        Canvas.new(width: width, height: height)
+        PaintCli::Shapes::Canvas.from_input(args)
       when "L"
-        x1 = Integer(args[0])
-        y1 = Integer(args[1])
-        x2 = Integer(args[2])
-        y2 = Integer(args[3])
-        Line.new(x1: x1, y1: y1, x2: x2, y2: y2)
+        PaintCli::Shapes::Line.from_input(args)
       else
         InvalidInput.new(input: input)
       end
