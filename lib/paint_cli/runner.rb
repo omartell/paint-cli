@@ -2,8 +2,8 @@ module PaintCli
   class Runner
     def start
       parser = Parser.new
+      $stdout.puts "Welcome to paint-cli"
       loop  do
-        $stdout.puts "Welcome to paint-cli"
         $stdout.puts "Insert your command"
         input  = $stdin.gets.chomp
         command = parser.parse(input)
