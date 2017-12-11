@@ -11,6 +11,10 @@ RSpec.describe PaintCli::Parser do
     it "parses a canvas command" do
       expect(parser.parse("C 3 3")).to eq(PaintCli::Canvas.new(width: 3, height: 3))
     end
+
+    it "parses a line command" do
+      expect(parser.parse("L 1 1 1 3")).to eq(PaintCli::Line.new(x1: 1, y1: 1, x2: 1, y2: 3))
+    end
   end
 
   context "invalid commands" do

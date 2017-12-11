@@ -13,7 +13,7 @@ RSpec.describe PaintCli::Runner do
     expect { runner.start }.to output(%r{Welcome to paint-cli}).to_stdout
   end
 
-  it "paints a canvas when given a canvas command" do
+  it "paints a canvas" do
     allow($stdin).to receive(:gets).and_return("C 3 3", "Q")
 
     expect { runner.start }.to output(message(<<-OUT)).to_stdout
@@ -21,6 +21,18 @@ RSpec.describe PaintCli::Runner do
 |   |
 |   |
 |   |
+|---|
+OUT
+  end
+
+  it "paints horizontal lines" do
+    allow($stdin).to receive(:gets).and_return("C 3 3", "L 1 1 1 3", "Q")
+
+    expect { runner.start }.to output(message(<<-OUT)).to_stdout
+|---|
+|x  |
+|x  |
+|x  |
 |---|
 OUT
   end
