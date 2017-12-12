@@ -49,6 +49,18 @@ OUT
 OUT
   end
 
+  it "paints rectangles" do
+    allow($stdin).to receive(:gets).and_return("C 3 3", "R 1 1 3 3", "Q")
+
+    expect { runner.start }.to output(message(<<-OUT)).to_stdout
+|---|
+|xxx|
+|x x|
+|xxx|
+|---|
+OUT
+  end
+
   it "shows an error message for invalid inputs" do
     allow($stdin).to receive(:gets).and_return("C a f", "Q")
 

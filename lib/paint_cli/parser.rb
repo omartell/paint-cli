@@ -15,6 +15,8 @@ module PaintCli
         PaintCli::Shapes::Canvas.from_input(args)
       when "L"
         PaintCli::Shapes::Line.from_input(args)
+      when "R"
+        PaintCli::Shapes::Rectangle.from_input(args)
       else
         PaintCli::InvalidInput.new(input: input)
       end
