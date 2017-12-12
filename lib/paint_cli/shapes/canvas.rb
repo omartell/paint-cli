@@ -22,7 +22,7 @@ module PaintCli::Shapes
             [[x, y], nil]
           end
         end
-      ]
+      ].merge(width: width, height: height)
     end
   end
 end

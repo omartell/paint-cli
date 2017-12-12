@@ -5,6 +5,8 @@ RSpec.describe PaintCli::Shapes::Canvas do
 
    it "returns the pixels for the canvas" do
      expect(canvas.pixels).to eq({
+       width:  3,
+       height: 3,
        [1, 1] => nil,
        [1, 2] => nil,
        [1, 3] => nil,

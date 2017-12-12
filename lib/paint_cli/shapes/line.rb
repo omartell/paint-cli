@@ -15,7 +15,7 @@ module PaintCli::Shapes
     end
 
     def pixels
-
+      Hash[(x1..x2).flat_map { |x| (y1..y2).map {|y| [[x, y], "x"]} }]
     end
   end
 end
