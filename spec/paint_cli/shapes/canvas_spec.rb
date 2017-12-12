@@ -13,19 +13,19 @@ RSpec.describe PaintCli::Shapes::Canvas do
     end
   end
 
-   it "returns the pixels for the canvas" do
-     expect(canvas.pixels).to eq({
-       width:  3,
-       height: 3,
-       [1, 1] => nil,
-       [1, 2] => nil,
-       [1, 3] => nil,
-       [2, 1] => nil,
-       [2, 2] => nil,
-       [2, 3] => nil,
-       [3, 1] => nil,
-       [3, 2] => nil,
-       [3, 3] => nil
-     })
-   end
+  it "returns the pixels for the canvas" do
+    expect(canvas.pixels).to eq({
+      width:  3,
+      height: 3,
+      [1, 1] => nil,
+      [1, 2] => nil,
+      [1, 3] => nil,
+      [2, 1] => nil,
+      [2, 2] => nil,
+      [2, 3] => nil,
+      [3, 1] => nil,
+      [3, 2] => nil,
+      [3, 3] => nil
+    })
+  end
 end

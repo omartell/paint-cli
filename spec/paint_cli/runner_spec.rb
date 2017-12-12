@@ -25,7 +25,7 @@ RSpec.describe PaintCli::Runner do
 OUT
   end
 
-  it "paints horizontal lines" do
+  it "paints vertical lines" do
     allow($stdin).to receive(:gets).and_return("C 3 3", "L 1 1 1 3", "Q")
 
     expect { runner.start }.to output(message(<<-OUT)).to_stdout
@@ -33,6 +33,18 @@ OUT
 |x  |
 |x  |
 |x  |
+|---|
+OUT
+  end
+
+  it "paints horizontal lines" do
+    allow($stdin).to receive(:gets).and_return("C 3 3", "L 1 1 3 1", "Q")
+
+    expect { runner.start }.to output(message(<<-OUT)).to_stdout
+|---|
+|xxx|
+|   |
+|   |
 |---|
 OUT
   end

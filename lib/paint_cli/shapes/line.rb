@@ -17,7 +17,13 @@ module PaintCli::Shapes
     end
 
     def pixels
-      Hash[(x1..x2).flat_map { |x| (y1..y2).map {|y| [[x, y], "x"]} }]
+      by_y = y2 > y1 ? 1 : -1
+      by_x = x2 > x1 ? 1 : -1
+      Hash[
+        x1.step(by: by_x, to: x2).flat_map { |x|
+          y1.step(by: by_y, to: y2).map {|y| [[x, y], "x"]}
+        }
+      ]
     end
   end
 end
