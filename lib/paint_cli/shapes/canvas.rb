@@ -8,6 +8,8 @@ module PaintCli::Shapes
       width  = Integer(input.first)
       height = Integer(input.last)
       self.new(width: width, height: height)
+    rescue ArgumentError
+      PaintCli::InvalidInput.new(input: input)
     end
 
     def initialize(width: , height:)

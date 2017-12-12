@@ -8,6 +8,8 @@ module PaintCli::Shapes
       x2 = Integer(input[2])
       y2 = Integer(input[3])
       self.new(x1: x1, y1: y1, x2: x2, y2: y2)
+    rescue ArgumentError, TypeError
+      PaintCli::InvalidInput.new(input: input)
     end
 
     def initialize(x1:, y1:, x2:, y2:)
